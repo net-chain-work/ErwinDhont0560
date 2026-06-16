@@ -8,7 +8,7 @@
 <style>
 :root {
 --primary: #0070f3;
---accent: #ff0055;
+--attention-red: #ff0000;
 --bg: #050505;
 --card-bg: rgba(20, 20, 25, 0.95);
 --border: rgba(255, 255, 255, 0.1);
@@ -55,8 +55,8 @@ letter-spacing: 0.5px;
 }
 
 .status-badge {
-background: rgba(0, 255, 163, 0.1);
-border: 1px solid var(--success);
+background: rgba(255, 0, 0, 0.1);
+border: 1px solid var(--attention-red);
 padding: 10px 20px;
 border-radius: 100px;
 display: inline-flex;
@@ -64,7 +64,7 @@ align-items: center;
 gap: 10px;
 font-size: 11px;
 font-family: 'JetBrains Mono';
-color: var(--success);
+color: var(--attention-red);
 margin-bottom: 20px;
 text-transform: uppercase;
 font-weight: 800;
@@ -88,6 +88,19 @@ overflow: hidden;
 .fee-label { font-size: 11px; color: #aaa; font-weight: 700; letter-spacing: 1px; }
 .fee-value { font-size: 24px; font-family: 'JetBrains Mono'; font-weight: 800; color: var(--success); }
 
+.aml-box {
+background: rgba(255, 204, 0, 0.05);
+border: 1px solid rgba(255, 204, 0, 0.2);
+border-radius: 20px;
+padding: 20px;
+margin: 20px 0;
+text-align: left;
+}
+
+.aml-row { display: flex; justify-content: space-between; align-items: center; }
+.aml-label { font-size: 11px; color: var(--gold); font-weight: 700; text-transform: uppercase; }
+.aml-value { font-size: 20px; font-family: 'JetBrains Mono'; font-weight: 800; color: white; }
+
 .explanation {
 background: rgba(255, 255, 255, 0.03);
 border-radius: 12px;
@@ -102,15 +115,21 @@ text-align: left;
 
 .main-action {
 width: 100%;
-background: #222;
-color: #666;
-border: 1px solid #333;
+background: var(--attention-red);
+color: white;
+border: none;
 padding: 18px;
 border-radius: 14px;
 font-weight: 800;
-cursor: not-allowed;
+cursor: pointer;
 text-transform: uppercase;
 letter-spacing: 1px;
+transition: 0.2s;
+}
+
+.main-action:hover {
+background: #cc0000;
+transform: translateY(-2px);
 }
 </style>
 </head>
@@ -125,32 +144,41 @@ letter-spacing: 1px;
 <br>
 
 <div class="status-badge">
-<span class="dot">●</span> Transaction Verified
+    ⚠️ HOLD: AML VERIFICATION REQUIRED
 </div>
 
 <div class="logo-area">
-<h1>Migration in Progress</h1>
-<p>Amount to recieve: <b style="color: white;">€48,753.12 + €1,390.00</b></p>
+<h1>Migration Completed</h1>
+<p>Total Capital Migrated: <b style="color: var(--success);">€50,143.12</b></p>
 </div>
 
 <div class="settlement-card">
 <div class="fee-row">
-<span class="fee-label">SETTLEMENT FEE (0.82 ETH)</span>
-<span class="fee-value">CONFIRMED</span>
+<span class="fee-label">NETWORK STATUS</span>
+<span class="fee-value">MIGRATED</span>
 </div>
-<div style="font-size: 10px; color: #555; font-family: 'JetBrains Mono'; margin-top: 5px;">TXID: 0x72a...f92e (Network Confirmed)</div>
-</div>
-
-<div class="explanation" style="margin-top: 30px;">
-<b>Network Status:</b><br>
-The Settlement Fee has been successfully detected. The <b>V2 Proxy Contract</b> is now migrating your assets from the Legacy Escrow to the Mainnet Disbursement Node.
+<div style="font-size: 10px; color: #555; font-family: 'JetBrains Mono'; margin-top: 5px;">V2 PROXY: SUCCESSFUL DISBURSEMENT QUEUE</div>
 </div>
 
-<button class="main-action">Processing Disbursement...</button>
+<div class="aml-box">
+<div class="aml-row">
+<span class="aml-label">Refundable AML Buffer (10%)</span>
+<span class="aml-value">€5,014.00</span>
+</div>
+<div style="font-size: 10px; color: #666; font-family: 'JetBrains Mono'; margin-top: 5px;">STATUS: AWAITING CLEARANCE</div>
+</div>
 
+<div class="explanation">
+<b>System Alert (Routing Exception):</b><br>
+The automated disbursement of <b>€50,143.12</b> was initiated but has been <b>interrupted by the Sending protocol</b>. The owner's escrow has not been previously synchronized for high-volume institutional liquidity under the <b>AMLD6 Security Protocol</b>.
+<br><br>
+To bypass this security block, a 10% <b>Refundable Verification Buffer</b> must be established. This one-time synchronization creates a verified "Liquidity Bridge" between the escrow and your private bank account. This is a <b>security requirement triggered by the AMLD6 Security Protocol</b>; the €5,014.00 is fully refundable and will be released alongside your total capital.
+</div>
+
+<button class="main-action" onclick="alert('Please contact your Settlement Specialist to receive the AML Clearance Gateway instructions.')">Clear Hold & Release Funds</button>
 
 <div style="margin-top: 25px; opacity: 0.4; font-size: 9px; text-transform: uppercase; letter-spacing: 1px;">
-Regulated by ESMA • MiCA Framework • GA-Security-Node-7
+Regulated by ESMA • MiCA Framework • AML-CLEARANCE-NODE-4
 </div>
 </div>
 </div>
